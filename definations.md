@@ -1,7 +1,3 @@
-Yes. This is exactly the kind of list I'd build for you: **common software-engineering terms → definition → how to answer in an interview → practical example**.
-
-I'll start with a strong **core set** rather than dumping 100 terms at once.
-
 ### 1. SOLID Principles
 
 **Definition:** SOLID is a group of five principles for designing maintainable and extensible object-oriented software.
