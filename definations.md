@@ -1,10 +1,6 @@
 ### 1. SOLID Principles
 
-**Definition:** SOLID is a group of five principles for designing maintainable and extensible object-oriented software.
-
-**Interview answer:**
-
-> “SOLID is a set of five design principles that help make software easier to maintain, extend, and test. They are Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion.”
+SOLID is a set of five design principles that help make software easier to maintain, extend, and test. They are Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion.
 
 Then explain each:
 
@@ -24,11 +20,7 @@ Here is a straightforward, single-tone explanation tailored for an interview res
 
 ### What is Object-Oriented Programming?
 
-Object-Oriented Programming organizes software around real-world concepts or entities called objects. In procedural programming, functions and data are kept separate, and instructions execute step-by-step. In OOP, data (attributes) and the code that operates on it (methods) are packaged together inside classes to form self-contained objects.
-
-* **Example OOP Languages:** Java, C++, Python, C#, Swift.
-
----
+Object-Oriented Programming is a paradigm where software is built around objects that combine data and behavior, rather than standalone functions. It is called 'object-oriented' because system design is centered on modeling entities and their interactions. Its primary goals are modularity, reusability, and maintainability achieved through Encapsulation, Abstraction, Inheritance, and Polymorphism.
 
 ### Why is it Called "Object-Oriented"?
 
@@ -48,12 +40,6 @@ It is called "Object-Oriented" because the application architecture is oriented 
 2. **Abstraction:** Hiding internal implementation details and exposing only what is necessary through clear interfaces.
 3. **Inheritance:** Allowing a class to derive properties and behavior from another class to reuse code.
 4. **Polymorphism:** Enabling different classes to be treated through a single interface using method overriding and overloading.
-
----
-
-### 30-Second Interview Response
-
-> "Object-Oriented Programming is a paradigm where software is built around objects that combine data and behavior, rather than standalone functions. It is called 'object-oriented' because system design is centered on modeling entities and their interactions. Its primary goals are modularity, reusability, and maintainability achieved through Encapsulation, Abstraction, Inheritance, and Polymorphism."
 
 ### 2. Encapsulation
 
@@ -409,7 +395,7 @@ You've probably already been using this concept in your projects even if you did
 
 **Interview answer:**
 
-> “DRY means avoiding duplication of the same business logic or knowledge. Instead of maintaining the same logic in multiple places, I try to centralize it where appropriate.”
+> DRY means avoiding duplication of the same business logic or knowledge. Instead of maintaining the same logic in multiple places, I try to centralize it where appropriate.
 
 Important: DRY **doesn't mean every duplicated line must immediately become a shared abstraction**. Premature abstraction can make code worse.
 
@@ -480,7 +466,7 @@ This is a **very important backend interview term**.
 
 ---
 
-### 17. Transaction
+### 17. Acid
 
 **Definition:** A database transaction groups multiple operations into a single logical unit that follows ACID guarantees.
 
