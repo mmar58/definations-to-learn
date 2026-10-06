@@ -16,6 +16,45 @@ Then explain each:
 
 ---
 
+Object-Oriented Programming (OOP) is a software design paradigm focused on **objects**—units that bundle data and behavior together—rather than sequential logic alone.
+
+Here is a straightforward, single-tone explanation tailored for an interview response.
+
+---
+
+### What is Object-Oriented Programming?
+
+Object-Oriented Programming organizes software around real-world concepts or entities called objects. In procedural programming, functions and data are kept separate, and instructions execute step-by-step. In OOP, data (attributes) and the code that operates on it (methods) are packaged together inside classes to form self-contained objects.
+
+* **Example OOP Languages:** Java, C++, Python, C#, Swift.
+
+---
+
+### Why is it Called "Object-Oriented"?
+
+It is called "Object-Oriented" because the application architecture is oriented directly around objects rather than procedures:
+
+* **Shift in Focus:** Instead of focusing on *what actions are happening*, OOP focuses on *what entities are acting or being acted upon*.
+* **Real-World Modeling:** Systems are built by modeling entities that have state, behavior, and the ability to interact with other entities.
+* **Data Integration:** Data and its associated functions are bound directly to the object, ensuring data integrity across the system.
+
+> **Analogy:** A **Car** class acts as the blueprint. An individual **car on the road** is the object instance. Its **color and speed** are its attributes, and **accelerating or braking** are its methods.
+
+---
+
+### The 4 Pillars of OOP
+
+1. **Encapsulation:** Bundling data and methods into a single unit while restricting direct outside access to internal states.
+2. **Abstraction:** Hiding internal implementation details and exposing only what is necessary through clear interfaces.
+3. **Inheritance:** Allowing a class to derive properties and behavior from another class to reuse code.
+4. **Polymorphism:** Enabling different classes to be treated through a single interface using method overriding and overloading.
+
+---
+
+### 30-Second Interview Response
+
+> "Object-Oriented Programming is a paradigm where software is built around objects that combine data and behavior, rather than standalone functions. It is called 'object-oriented' because system design is centered on modeling entities and their interactions. Its primary goals are modularity, reusability, and maintainability achieved through Encapsulation, Abstraction, Inheritance, and Polymorphism."
+
 ### 2. Encapsulation
 
 **Definition:** Encapsulation means keeping an object's internal state and implementation details hidden behind a controlled interface.
