@@ -153,7 +153,7 @@ You could say:
 >
 > Invoice generation and delivery creation can then be handled asynchronously through a message queue and background workers. This keeps the payment request fast and allows those operations to retry independently.
 >
-> I'd make the payment webhook and downstream operations idempotent so retries or duplicate events don't create duplicate invoices or deliveries. I'd also maintain separate states for payment, invoice, and delivery because payment can succeed even if a later operation temporarily fails.
+> I'd ensure the payment webhook and downstream operations check state before processing, so retries or duplicate events don't create duplicate invoices or deliveries. I'd also maintain separate states for payment, invoice, and delivery because payment can succeed even if a later operation temporarily fails.
 >
 > Finally, I'd add logging and monitoring so failed jobs can be retried or manually recovered.”
 
