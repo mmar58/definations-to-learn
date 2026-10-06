@@ -466,7 +466,7 @@ This is a **very important backend interview term**.
 
 ---
 
-### 17. Acid
+### 17. Transaction
 
 **Definition:** A database transaction groups multiple operations into a single logical unit that follows ACID guarantees.
 
