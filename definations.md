@@ -63,8 +63,60 @@ It is called "Object-Oriented" because the application architecture is oriented 
 
 > “Encapsulation means hiding internal implementation details and exposing only what other parts of the application need to interact with.”
 
-**Example:**
-A `UserService` exposes `createUser()` rather than allowing every part of the application to directly manipulate password hashing and database operations.
+**Explanation:**
+Instead of letting any part of your code modify an object's properties directly, you use access modifiers (`private`, `protected`, `public`) to restrict access. You then provide specific methods (like getters, setters, or business logic methods) to safely interact with that data.
+
+**TypeScript Example:**
+```ts
+class BankAccount {
+  private balance: number; // Hidden from the outside
+
+  constructor(initialBalance: number) {
+    this.balance = initialBalance;
+  }
+
+  // Controlled access to modify the state
+  public deposit(amount: number): void {
+    if (amount > 0) {
+      this.balance += amount;
+    }
+  }
+
+  // Controlled access to read the state
+  public getBalance(): number {
+    return this.balance;
+  }
+}
+
+const account = new BankAccount(100);
+account.deposit(50);
+// account.balance = 5000; // Error: Property 'balance' is private
+```
+
+**Flutter (Dart) Example:**
+```dart
+class BankAccount {
+  double _balance; // Underscore denotes private in Dart
+
+  BankAccount(this._balance);
+
+  // Controlled access to modify the state
+  void deposit(double amount) {
+    if (amount > 0) {
+      _balance += amount;
+    }
+  }
+
+  // Getter to safely read the state
+  double get balance => _balance;
+}
+
+void main() {
+  var account = BankAccount(100);
+  account.deposit(50);
+  // account._balance = 5000; // Error: '_balance' is private
+}
+```
 
 ---
 
@@ -76,13 +128,63 @@ A `UserService` exposes `createUser()` rather than allowing every part of the ap
 
 > “Abstraction allows us to work with something through a simpler interface without needing to know its internal implementation.”
 
-For example:
+**Explanation:**
+You define *what* an object should do without specifying *how* it does it. This is often achieved using abstract classes or interfaces. The caller only interacts with the high-level interface, ignoring the complex logic happening under the hood.
 
+**TypeScript Example:**
 ```ts
-paymentService.charge(amount)
+abstract class PaymentProcessor {
+  // We know it can process payments, but we don't care how here
+  abstract processPayment(amount: number): void;
+}
+
+class StripeProcessor extends PaymentProcessor {
+  processPayment(amount: number): void {
+    console.log(`Processing $${amount} through Stripe API...`);
+    // Complex Stripe API logic goes here
+  }
+}
+
+class PayPalProcessor extends PaymentProcessor {
+  processPayment(amount: number): void {
+    console.log(`Processing $${amount} through PayPal API...`);
+    // Complex PayPal API logic goes here
+  }
+}
+
+// The function just uses the abstraction
+function checkout(processor: PaymentProcessor, amount: number) {
+  processor.processPayment(amount);
+}
 ```
 
-The caller doesn't need to know whether Stripe, PayPal, or another provider performs the actual payment.
+**Flutter (Dart) Example:**
+```dart
+abstract class PaymentProcessor {
+  void processPayment(double amount);
+}
+
+class StripeProcessor extends PaymentProcessor {
+  @override
+  void processPayment(double amount) {
+    print('Processing \$${amount} through Stripe API...');
+    // Complex Stripe API logic
+  }
+}
+
+class PayPalProcessor extends PaymentProcessor {
+  @override
+  void processPayment(double amount) {
+    print('Processing \$${amount} through PayPal API...');
+    // Complex PayPal API logic
+  }
+}
+
+// Function using the abstraction
+void checkout(PaymentProcessor processor, double amount) {
+  processor.processPayment(amount);
+}
+```
 
 ---
 
@@ -94,7 +196,57 @@ The caller doesn't need to know whether Stripe, PayPal, or another provider perf
 
 > “Inheritance allows a child class to reuse and extend behavior from a parent class. It's useful when there is a genuine is-a relationship, although composition is often preferable when we want more flexibility.”
 
-That last sentence is useful because interviewers often follow up with **“composition vs inheritance?”**
+**Explanation:**
+When multiple classes share similar characteristics, you can create a base (parent) class with those shared traits, and then have specific (child) classes inherit from it. This prevents code duplication and establishes an "is-a" relationship (e.g., a Dog *is an* Animal).
+
+**TypeScript Example:**
+```ts
+class Animal {
+  constructor(public name: string) {}
+
+  eat(): void {
+    console.log(`${this.name} is eating.`);
+  }
+}
+
+// Dog inherits from Animal
+class Dog extends Animal {
+  bark(): void {
+    console.log(`${this.name} says Woof!`);
+  }
+}
+
+const myDog = new Dog("Buddy");
+myDog.eat(); // Inherited method
+myDog.bark(); // Own method
+```
+
+**Flutter (Dart) Example:**
+```dart
+class Animal {
+  String name;
+  Animal(this.name);
+
+  void eat() {
+    print('$name is eating.');
+  }
+}
+
+// Dog inherits from Animal
+class Dog extends Animal {
+  Dog(String name) : super(name);
+
+  void bark() {
+    print('$name says Woof!');
+  }
+}
+
+void main() {
+  var myDog = Dog('Buddy');
+  myDog.eat(); // Inherited method
+  myDog.bark(); // Own method
+}
+```
 
 ---
 
@@ -106,23 +258,66 @@ That last sentence is useful because interviewers often follow up with **“comp
 
 > “Polymorphism allows different objects to provide different implementations of the same interface, so the calling code doesn't need to know the concrete implementation.”
 
-Example:
+**Explanation:**
+Polymorphism (meaning "many forms") allows a method to do different things based on the object it is acting upon, even if they share the same method name. It is closely tied to inheritance and abstraction (method overriding/interface implementation).
 
+**TypeScript Example:**
 ```ts
 interface Notification {
   send(message: string): void;
 }
 
 class EmailNotification implements Notification {
-  send(message: string) {}
+  send(message: string): void {
+    console.log(`Sending email: ${message}`);
+  }
 }
 
 class SMSNotification implements Notification {
-  send(message: string) {}
+  send(message: string): void {
+    console.log(`Sending SMS: ${message}`);
+  }
 }
+
+function notifyUser(notificationService: Notification, message: string) {
+  // The exact implementation of 'send' depends on the object passed
+  notificationService.send(message); 
+}
+
+notifyUser(new EmailNotification(), "Welcome!");
+notifyUser(new SMSNotification(), "Your OTP is 1234");
 ```
 
-Your service can work with `Notification` without caring whether it's email or SMS.
+**Flutter (Dart) Example:**
+```dart
+abstract class Notification {
+  void send(String message);
+}
+
+class EmailNotification implements Notification {
+  @override
+  void send(String message) {
+    print('Sending email: $message');
+  }
+}
+
+class SMSNotification implements Notification {
+  @override
+  void send(String message) {
+    print('Sending SMS: $message');
+  }
+}
+
+void notifyUser(Notification notificationService, String message) {
+  // The exact implementation of 'send' depends on the object passed
+  notificationService.send(message);
+}
+
+void main() {
+  notifyUser(EmailNotification(), 'Welcome!');
+  notifyUser(SMSNotification(), 'Your OTP is 1234');
+}
+```
 
 ---
 
