@@ -313,19 +313,69 @@ void main() {
 
 **Interview answer:**
 
-> “Composition means building an object or service by combining smaller components. I generally prefer it when behaviors need to be mixed and changed independently.”
+> “Composition means building an object or service by combining smaller components. I generally prefer it when behaviors need to be mixed and changed independently, rather than creating complex inheritance hierarchies.”
 
-This is extremely relevant to modern TypeScript/JavaScript development.
+**Explanation:**
+Instead of saying an object "is-a" something (inheritance), composition says an object "has-a" something or "can-do" something. It prevents deep inheritance trees and the "gorilla banana problem" (where you wanted a banana but got a gorilla holding the banana and the entire jungle). You inject or compose behaviors to create what you need.
+
+**TypeScript Example:**
+```ts
+// Behaviors
+const canFly = {
+  fly: () => console.log("Flying through the sky!"),
+};
+
+const canSwim = {
+  swim: () => console.log("Swimming in the water!"),
+};
+
+// Composing objects using these behaviors
+function createDuck(name: string) {
+  return {
+    name,
+    ...canFly,
+    ...canSwim,
+  };
+}
+
+const daffy = createDuck("Daffy");
+daffy.fly();
+daffy.swim();
+```
+
+**Flutter (Dart) Example:**
+```dart
+// Using Mixins in Dart for composition
+mixin CanFly {
+  void fly() {
+    print('Flying through the sky!');
+  }
+}
+
+mixin CanSwim {
+  void swim() {
+    print('Swimming in the water!');
+  }
+}
+
+// Composing the class using Mixins
+class Duck with CanFly, CanSwim {
+  String name;
+  Duck(this.name);
+}
+
+void main() {
+  var daffy = Duck('Daffy');
+  daffy.fly();
+  daffy.swim();
+}
+```
 
 ---
 
 ### 7. Dependency Injection
 
-**Definition:** Dependency Injection means providing an object's dependencies from outside instead of having the object create them itself.
-
-**Interview answer:**
-
-> “Dependency injection means supplying dependencies from outside the class or module. It reduces coupling and makes components easier to test and replace.”
+Dependency injection means supplying dependencies from outside the class or module. It reduces coupling and makes components easier to test and replace.
 
 Instead of:
 
