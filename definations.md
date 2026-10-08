@@ -533,6 +533,18 @@ Then mention:
 * **Isolation** — concurrent transactions don't improperly interfere
 * **Durability** — committed data persists
 
+ACID describes four important properties of reliable database transactions.
+
+Atomicity means the transaction happens completely or not at all.
+
+Consistency means the transaction leaves the database in a valid state according to its constraints and rules.
+
+Isolation means concurrent transactions don't incorrectly interfere with each other.
+
+Durability means that once a transaction is committed, the data should survive failures according to the database's durability guarantees.
+
+In practice, these properties are important when I'm dealing with operations such as payments, orders, inventory, or other data that must remain consistent.
+
 ---
 
 ### 18. Index
